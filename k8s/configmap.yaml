@@ -1,0 +1,10 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: front-config
+  namespace: app
+data:
+  # Имя и порт Service бэкенда в том же namespace. Если бэкенд живёт
+  # в другом namespace, укажите FQDN: back-service.<namespace>.svc.cluster.local
+  BACKEND_HOST: back-service
+  BACKEND_PORT: "8000"
