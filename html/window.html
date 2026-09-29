@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Окно — UML Diagram Editor</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <header class="topbar" id="topbar"></header>
+
+  <main>
+    <h1 id="window-title">Окно</h1>
+    <div id="message"></div>
+
+    <div class="grid-2">
+      <div class="card">
+        <h2>Классы</h2>
+        <form id="create-class-form" class="inline">
+          <input type="text" id="class-name" placeholder="Имя класса" required>
+          <button type="submit">Добавить</button>
+        </form>
+        <ul class="list" id="classes-list" style="margin-top: 14px;"></ul>
+      </div>
+
+      <div class="card">
+        <h2>Интерфейсы</h2>
+        <form id="create-interface-form" class="inline">
+          <input type="text" id="interface-name" placeholder="Имя интерфейса" required>
+          <button type="submit">Добавить</button>
+        </form>
+        <ul class="list" id="interfaces-list" style="margin-top: 14px;"></ul>
+      </div>
+    </div>
+
+    <div class="card">
+      <h2>Генерация кода</h2>
+      <form id="generate-form" class="inline">
+        <select id="language">
+          <option value="java">Java</option>
+          <option value="python">Python</option>
+        </select>
+        <button type="submit">Сгенерировать</button>
+      </form>
+      <div id="generated-files"></div>
+    </div>
+  </main>
+
+  <script type="module" src="js/window.js"></script>
+</body>
+</html>

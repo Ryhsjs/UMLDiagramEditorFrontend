@@ -1,0 +1,182 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: 'Segoe UI', Arial, sans-serif;
+  background: #1e1e1e;
+  color: #e0e0e0;
+}
+
+a {
+  color: #4CAF50;
+}
+
+header.topbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 24px;
+  background: #2d2d2d;
+  border-bottom: 1px solid #3a3a3a;
+}
+
+header.topbar .brand {
+  font-weight: bold;
+  color: #4CAF50;
+}
+
+header.topbar nav a,
+header.topbar nav button {
+  margin-left: 16px;
+}
+
+main {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 24px;
+}
+
+.card {
+  background: #2d2d2d;
+  border-radius: 8px;
+  padding: 20px;
+  margin-bottom: 20px;
+}
+
+h1, h2, h3 {
+  margin-top: 0;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  max-width: 400px;
+}
+
+form.inline {
+  flex-direction: row;
+  align-items: center;
+  max-width: none;
+  flex-wrap: wrap;
+}
+
+label {
+  font-size: 14px;
+  color: #aaa;
+}
+
+input, select, textarea {
+  background: #1e1e1e;
+  border: 1px solid #444;
+  color: #e0e0e0;
+  padding: 8px 10px;
+  border-radius: 4px;
+  font-size: 14px;
+}
+
+button {
+  background: #4CAF50;
+  border: none;
+  color: #fff;
+  padding: 8px 16px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+button:hover {
+  background: #43a047;
+}
+
+button.secondary {
+  background: #444;
+}
+
+button.secondary:hover {
+  background: #555;
+}
+
+button.danger {
+  background: #a33;
+}
+
+button.danger:hover {
+  background: #c33;
+}
+
+.list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.list li {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 0;
+  border-bottom: 1px solid #3a3a3a;
+}
+
+.list li:last-child {
+  border-bottom: none;
+}
+
+.list .item-actions {
+  display: flex;
+  gap: 8px;
+}
+
+.list .item-title {
+  font-weight: bold;
+}
+
+.list .item-sub {
+  color: #999;
+  font-size: 13px;
+}
+
+.message {
+  padding: 10px 14px;
+  border-radius: 4px;
+  margin-bottom: 14px;
+  font-size: 14px;
+}
+
+.message.error {
+  background: #4a2323;
+  color: #ff8a8a;
+}
+
+.message.success {
+  background: #22402a;
+  color: #8ee6a8;
+}
+
+.muted {
+  color: #999;
+  font-size: 14px;
+}
+
+.grid-2 {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
+
+@media (max-width: 700px) {
+  .grid-2 {
+    grid-template-columns: 1fr;
+  }
+}
+
+pre {
+  background: #1e1e1e;
+  padding: 12px;
+  border-radius: 4px;
+  overflow-x: auto;
+  font-size: 13px;
+}

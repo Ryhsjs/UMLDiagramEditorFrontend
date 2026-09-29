@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Подтверждение аккаунта — UML Diagram Editor</title>
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+  <main>
+    <div class="card" style="max-width: 400px; margin: 60px auto;">
+      <h1>Подтверждение аккаунта</h1>
+      <div id="message" class="muted">Подтверждаем...</div>
+      <p class="muted" style="margin-top: 16px;">
+        <a href="/index.html">Перейти ко входу</a>
+      </p>
+    </div>
+  </main>
+
+  <script type="module">
+    import { auth } from '/js/api.js';
+    import { showMessage } from '/js/nav.js';
+
+    const messageEl = document.getElementById('message');
+    const params = new URLSearchParams(window.location.search);
+    const userId = params.get('user_id');
+    const code = params.get('code');
+
+    if (!userId || !code) {
+      showMessage(messageEl, 'Ссылка неполная: не хватает параметров.');
+    } else {
+      try {
+        await auth.confirmAccount(userId, code);
+        showMessage(messageEl, 'Аккаунт подтверждён. Теперь можно войти.', 'success');
+      } catch (err) {
+        showMessage(messageEl, err.message);
+      }
+    }
+  </script>
+</body>
+</html>

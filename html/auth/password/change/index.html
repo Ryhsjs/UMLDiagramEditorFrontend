@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Новый пароль — UML Diagram Editor</title>
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+  <main>
+    <div class="card" style="max-width: 400px; margin: 60px auto;">
+      <h1>Новый пароль</h1>
+      <div id="message"></div>
+      <form id="change-form">
+        <label for="password">Новый пароль</label>
+        <input type="password" id="password" minlength="6" required>
+        <label for="password-confirm">Повторите пароль</label>
+        <input type="password" id="password-confirm" minlength="6" required>
+        <button type="submit">Сохранить</button>
+      </form>
+      <p class="muted" style="margin-top: 16px;">
+        <a href="/index.html">Назад ко входу</a>
+      </p>
+    </div>
+  </main>
+
+  <script type="module">
+    import { auth } from '/js/api.js';
+    import { showMessage, clearMessage } from '/js/nav.js';
+
+    const messageEl = document.getElementById('message');
+    const params = new URLSearchParams(window.location.search);
+    const userId = params.get('user_id');
+    const code = params.get('code');
+
+    if (!userId || !code) {
+      showMessage(messageEl, 'Ссылка неполная: не хватает параметров.');
+    }
+
+    document.getElementById('change-form').addEventListener('submit', async (e) => {
+      e.preventDefault();
+      clearMessage(messageEl);
+
+      const password = document.getElementById('password').value;
+      const passwordConfirm = document.getElementById('password-confirm').value;
+
+      if (!userId || !code) {
+        showMessage(messageEl, 'Ссылка неполная: не хватает параметров.');
+        return;
+      }
+
+      if (password !== passwordConfirm) {
+        showMessage(messageEl, 'Пароли не совпадают');
+        return;
+      }
+
+      try {
+        await auth.changePassword(userId, code, password, passwordConfirm);
+        showMessage(messageEl, 'Пароль изменён. Теперь можно войти.', 'success');
+      } catch (err) {
+        showMessage(messageEl, err.message);
+      }
+    });
+  </script>
+</body>
+</html>
